@@ -11,15 +11,12 @@ namespace EFCoreCodeFirstDemo.Entities
     public class Student
     {
         public int StudentId { get; set; }
-        public string? FirstName { get; set; }
-        public string? LastName { get; set; }
-        public DateTime? DateOfBirth { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
 
-        [Column(TypeName = "decimal(18,4)")]
-        public decimal Height { get; set; }
-        [Column(TypeName = "decimal(18,4)")]
-        public float Weight { get; set; }
-        public virtual Standard? Standard { get; set; }
+        public string Major { get; set; }
+        public virtual ICollection <Enrollment> Enrollments { get; set; }
 
     }
 }

@@ -10,10 +10,10 @@ using Microsoft.Extensions.Options;
 
 namespace EFCoreCodeFirstDemo.Entities
 {
-    public class EFCoreDbContext : DbContext
+    public class SMSCoreDbContext : DbContext
     {
         //Constructor calling the Base DbContext Class Constructor
-        public EFCoreDbContext() : base()
+        public SMSCoreDbContext() : base()
         {
 
         }
@@ -47,7 +47,12 @@ namespace EFCoreCodeFirstDemo.Entities
         }
         //pass the domain classes
         public DbSet<Student> Students{get;set; }
-        public DbSet<Standard> Standards { get;set; }
+        public DbSet<Course> Courses { get;set; }
 
+        public DbSet<Department> Departments { get;set; }
+
+        public DbSet<Enrollment> Enrollments { get;set; }
+
+        public DbSet<Professor> Professors { get;set; }
     }
 }
