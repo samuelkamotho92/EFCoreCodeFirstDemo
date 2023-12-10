@@ -32,6 +32,7 @@ namespace EFCoreCodeFirstDemo.Entities
             // Step4: Get the Configuration Values based on the Config key
             var connectionString = configSection["SQLServerConnection"] ?? null;
 
+            optionsBuilder.UseLazyLoadingProxies();
             //Configuring the Connection String
             optionsBuilder.UseSqlServer(connectionString);
 
@@ -54,5 +55,6 @@ namespace EFCoreCodeFirstDemo.Entities
         public DbSet<Enrollment> Enrollments { get;set; }
 
         public DbSet<Professor> Professors { get;set; }
+        public DbSet<StudentAddress> StudentAddresses { get; set; }
     }
 }

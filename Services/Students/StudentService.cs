@@ -1,4 +1,5 @@
 ﻿using EFCoreCodeFirstDemo.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,11 +67,12 @@ namespace EFCoreCodeFirstDemo.Services.Students
         public async Task<List<Student>> GetStudents()
         {
             //Get DbContext
-            List<Student> students =  smsDbContext.Students.ToList();
+            //Eager loading getting realted entities from the table
+            List<Student> students =  smsDbContext.Students.OrderBy(s=>s.FirstName).Include(st=>st.StudentAddress).ToList();
             Console.WriteLine("The Registered Students are");
             foreach (var student in students)
             {
-                Console.WriteLine($"{student.StudentId}: {student.FirstName} {student.LastName}");
+                Console.WriteLine($"Names: {student.StudentId}: {student.FirstName} {student.LastName} : Address {student.StudentAddress.Address1}  Email : {student.StudentAddress.Email}");
             }
 
             return students;
@@ -79,9 +81,12 @@ namespace EFCoreCodeFirstDemo.Services.Students
         public async Task<Student> GetStudent()
         {
             int stdId = userInput();
-            Student student = smsDbContext.Students.Find(stdId);
-            Console.WriteLine($"You selected");
+          Student student = smsDbContext.Students.Find(stdId);
+           // Student specStudent = smsDbContext.Students.FirstOrDefault(s => s.FirstName == "Samuel");
+            
+            //Console.WriteLine(specStudent);
             Console.WriteLine($"{student.StudentId}:{student.FirstName} {student.LastName}");
+           // Console.WriteLine($"{specStudent.StudentId}:{specStudent.FirstName} {specStudent.LastName}");
             return student;
         }
 

@@ -14,9 +14,16 @@ namespace EFCoreCodeFirstDemo.Entities
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
+        public int StandardId { get; set; }
 
         public string Major { get; set; }
+
+        //Virtual properties
+        public virtual StudentAddress StudentAddress { get; set; }
+
         public virtual ICollection <Enrollment> Enrollments { get; set; }
+
+        public virtual ICollection<Course> Courses { get; set; }
 
     }
 }
